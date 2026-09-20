@@ -21,6 +21,9 @@
         <h1 class="name">Marty McFly</h1>
         <p class="subtitle">Consultor de Cronologia e Especialista em Performance Musical</p>
       </div>
+      <button id="theme-toggle" class="theme-toggle" title="Ativar Flux Capacitor (modo noturno)" aria-label="Alternar modo noturno">
+        <span class="theme-toggle-icon">⚡</span>
+      </button>
     </header>
 
     <hr class="divider">
@@ -30,32 +33,32 @@
       <!-- COLUNA ESQUERDA -->
       <main class="main-column">
 
-        <section class="bio">
+        <section class="bio reveal">
           <p>Jovem dinâmico, pontual (quando o capacitor de fluxo permite) e com vasta experiência em resolução de paradoxos temporais. Guitarrista talentoso com domínio de técnicas avançadas de shredding antes mesmo de serem inventadas. Experiente em lidar com figuras históricas, direção defensiva de veículos modificados e skate urbano. Nota: Não me chame de frangote.</p>
         </section>
 
         <section class="experiencias">
           <h2 class="section-label">Experiências Profissionais</h2>
 
-          <article class="item">
+          <article class="item reveal">
             <h3 class="item-title">1985 – Presente | The Pinheads</h3>
             <p class="item-role">Guitarrista Principal</p>
             <p class="item-desc">Composição e performance de Rock 'n' Roll. Responsável pela audição da "Batalha das Bandas" (mesmo sendo considerado "barulhento demais" por alguns juízes).</p>
           </article>
 
-          <article class="item">
+          <article class="item reveal">
             <h3 class="item-title">1955 – Baile Encanto sob o Mar</h3>
             <p class="item-role">Músico Substituto (Guitarra)</p>
             <p class="item-desc">Substituição emergencial do guitarrista Marvin Berry. Responsável pela introdução cultural do gênero Heavy Metal trinta anos antes do previsto.</p>
           </article>
 
-          <article class="item">
+          <article class="item reveal">
             <h3 class="item-title">1885 – Consultoria de Segurança Hill Valley (Velho Oeste)</h3>
             <p class="item-role">Assistente de Ferreiro</p>
             <p class="item-desc">Auxílio técnico em engenharia ferroviária improvisada e mediação de conflitos com a gangue de Buford "Cachorro Louco" Tannen.</p>
           </article>
 
-          <article class="item">
+          <article class="item reveal">
             <h3 class="item-title">1985 – Indústrias Biffco</h3>
             <p class="item-role">Sobrevivente Urbano</p>
             <p class="item-desc">Gestão de crises em ambientes distópicos e recuperação de artefatos esportivos (almanaques) para restauração da ordem cronológica.</p>
@@ -70,25 +73,25 @@
         <section class="educacao">
           <h2 class="section-label">Educação</h2>
 
-          <article class="curso">
+          <article class="curso reveal">
             <h3 class="item-title">1986 | Hill Valley High School</h3>
             <p class="item-role">Ensino Médio Completo</p>
             <p class="item-desc">Foco em Artes e Música</p>
           </article>
 
-          <article class="curso">
+          <article class="curso reveal">
             <h3 class="item-title">1955 | Cultural Hill Valley</h3>
             <p class="item-role">Intercâmbio</p>
             <p class="item-desc">Estudos intensivos sobre dinâmicas sociais da década de 50 e etiqueta de lanchonetes.</p>
           </article>
 
-          <article class="curso">
+          <article class="curso reveal">
             <h3 class="item-title">1985 | Engenharia Aplicada</h3>
             <p class="item-role">Workshop</p>
             <p class="item-desc">Treinamento prático em sistemas de 1.21 Gigawatts e mecânica de DeLorean (sob mentoria do Dr. Emmett Brown).</p>
           </article>
 
-          <article class="curso">
+          <article class="curso reveal">
             <h3 class="item-title">2015 | Mobilidade Urbana Futurista</h3>
             <p class="item-role">Treinamento</p>
             <p class="item-desc">Curso intensivo de pilotagem de Hoverboard em superfícies sólidas (atenção: pranchas não funcionam na água sem potência extra).</p>
@@ -97,9 +100,9 @@
 
         <section class="contato">
           <h2 class="section-label">Contato</h2>
-          <p><strong>ENDEREÇO:</strong>  Lyon Estates, Hill Valley, CA.</p>
-          <p><strong>E-MAIL:</strong> cesarramyres@gmail.com</p>
-          <p><strong>TELEFONE:</strong> +55 (88) 9492-0108</p>
+          <p><strong>ENDEREÇO:</strong> Lyon Estates, Hill Valley, CA.</p>
+          <p><strong>E-MAIL:</strong> <a href="mailto:cesarramyres@gmail.com" class="contact-link">cesarramyres@gmail.com</a></p>
+          <p><strong>TELEFONE:</strong> <a href="tel:+558894920108" class="contact-link">+55 (88) 9492-0108</a></p>
         </section>
 
       </aside>
@@ -112,5 +115,40 @@
     </footer>
 
   </div>
+
+  <script>
+    // Modo noturno (Flux Capacitor) com persistência
+    const toggleBtn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') root.setAttribute('data-theme', 'dark');
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        root.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Animação de entrada ao rolar a página (com fallback de segurança)
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    }
+  </script>
 </body>
 </html>
