@@ -1,0 +1,182 @@
+/* ===== Design tokens extraídos do arquivo Figma (PROJETO CURRÍCULO) ===== */
+:root {
+  --color-accent: #f0d62e;
+  --color-text: #000000;
+  --color-muted: #7e7e7e;
+  --color-light: #b1b1b1;
+  --color-bg: #ffffff;
+
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1344px;
+  margin: 0 auto;
+  padding: 64px 48px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 33px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  background: var(--color-accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 42px;
+}
+
+.name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* DIVIDERS */
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 40px 0;
+}
+
+/* LAYOUT DE DUAS COLUNAS */
+.content {
+  display: flex;
+  gap: 73px;
+}
+
+.main-column {
+  flex: 876 1 0;
+  min-width: 0;
+}
+
+.side-column {
+  flex: 383 1 0;
+  min-width: 0;
+}
+
+/* LABELS DE SEÇÃO (EXPERIÊNCIAS PROFISSIONAIS / EDUCAÇÃO / CONTATO) */
+.section-label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2.1px; /* 15% de 14px, conforme Figma */
+  text-transform: uppercase;
+  margin: 0 0 24px 0;
+}
+
+/* BIO */
+.bio p {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 48px 0;
+}
+
+/* ITENS (experiência e educação) */
+.item,
+.curso {
+  margin-bottom: 40px;
+}
+
+.item-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+
+.item-role {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-muted);
+  margin: 0 0 12px 0;
+}
+
+.item-desc {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Na coluna de educação, a descrição é menor/curta -> mantém mesmo estilo */
+.side-column .item-desc {
+  font-size: 18px;
+}
+
+/* CONTATO */
+.contato p {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0 0 8px 0;
+}
+
+.contato strong {
+  font-weight: 700;
+}
+
+/* RODAPÉ */
+.footer-divider {
+  margin-top: 24px;
+}
+
+.rodape p {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  color: var(--color-light);
+  margin: 0;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+  .page {
+    padding: 32px 24px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
